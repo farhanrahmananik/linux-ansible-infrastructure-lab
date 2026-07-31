@@ -17,7 +17,7 @@ Scope 10 Local Validation Summary
 - Validation highlights.
 - 14-image evidence gallery.
 - Six real lessons learned.
-- Repository URL remains pending.
+- Public repository URL is published and linked from the case-study page.
 
 3. Responsive And Interaction Validation
 - Desktop, tablet, and mobile layouts passed visual checks.
@@ -52,5 +52,15 @@ Scope 10 Local Validation Summary
 - screenshots/scope-10/02-mobile-overview.png
 - screenshots/scope-10/03-lighthouse-desktop.png
 
+8. GitHub Publication
+- Public GitHub repository created from the validated main branch.
+- GitHub Pages source is main /docs.
+- HTTPS is enforced.
+- Live page validation returned HTTP 200.
+- All 10 required sections were present in the live response.
+- All 19 referenced local assets passed live availability checks.
+
 SCOPE_10_LOCAL_VALIDATION=PASS
-GITHUB_PAGES_PUBLICATION=NOT_STARTED
+GITHUB_REPOSITORY_PUBLICATION=PASS
+GITHUB_PAGES_PUBLICATION=PASS
+SCOPE_10_STATUS=PASS
