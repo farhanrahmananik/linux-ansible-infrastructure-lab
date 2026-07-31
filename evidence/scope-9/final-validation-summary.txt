@@ -1,0 +1,36 @@
+Scope 9 Final Validation Summary
+
+Playbook Validation
+- All 8 Ansible playbooks passed syntax validation.
+- All playbooks correctly target the managed_nodes inventory group.
+- User/group, package, firewall, SSH hardening, Nginx, backup, and maintenance automation passed idempotency validation.
+
+Platform And Connectivity
+- Both managed nodes passed Ansible ping.
+- Control node and both managed nodes run Ubuntu 26.04 LTS.
+- Control node uses Ansible 13.1.0+dfsg-1ubuntu1 and ansible-core 2.20.1-1.
+- Control node and both managed nodes have zero failed systemd units.
+
+Security Baseline
+- SSH effective setting confirmed: permitrootlogin no.
+- SSH effective setting confirmed: passwordauthentication no.
+- SSH effective setting confirmed: pubkeyauthentication yes.
+- UFW is active and allows OpenSSH and Nginx HTTP.
+
+Web Deployment
+- Nginx is active and enabled on both managed nodes.
+- Nginx landing page validation passed.
+
+Backup, Logging, And Maintenance
+- Backup timer is active and enabled.
+- Backup archive exists and passed gzip integrity and tar readability checks on both managed nodes.
+- logrotate.timer and systemd-tmpfiles-clean.timer are active.
+- Log collection completed successfully.
+
+Evidence And Documentation
+- Evidence, collected logs, and documentation passed the refined public-safety scan.
+- Two IPv4-pattern matches were reviewed and confirmed to be harmless netmask false positives.
+- 14 Scope 9 screenshots were captured, reviewed, copied into screenshots/scope-9/, and verified.
+- Validation checklist, screenshot plan, and troubleshooting guide were created.
+
+SCOPE_9_STATUS=PASS

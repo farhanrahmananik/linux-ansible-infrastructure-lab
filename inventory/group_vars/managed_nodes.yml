@@ -1,0 +1,12 @@
+---
+managed_users:
+  - username: opsadmin
+    groups:
+      - sudo
+
+managed_groups:
+  - name: linux_admins
+
+managed_packages:
+  - vim
+  - curl

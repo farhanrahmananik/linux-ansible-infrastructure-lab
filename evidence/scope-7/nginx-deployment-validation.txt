@@ -1,0 +1,40 @@
+=== SCOPE 7 NGINX DEPLOYMENT IDEMPOTENCY ===
+
+PLAY [Deploy Nginx web server] *************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [linux-node-01]
+ok: [linux-node-02]
+
+TASK [Install nginx package] ***************************************************
+ok: [linux-node-01]
+ok: [linux-node-02]
+
+TASK [Deploy nginx landing page] ***********************************************
+ok: [linux-node-02]
+ok: [linux-node-01]
+
+TASK [Allow Nginx HTTP traffic through UFW] ************************************
+ok: [linux-node-02]
+ok: [linux-node-01]
+
+TASK [Ensure nginx service is enabled and started] *****************************
+ok: [linux-node-02]
+ok: [linux-node-01]
+
+PLAY RECAP *********************************************************************
+linux-node-01              : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+linux-node-02              : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+=== NGINX FUNCTIONAL VALIDATION ===
+linux-node-02 | CHANGED | rc=0 >>
+Nginx service: active
+Nginx enabled: enabled
+Nginx HTTP                 ALLOW       Anywhere                   # Allow Nginx HTTP traffic
+  <title>Linux Infrastructure Automation Lab</title>
+linux-node-01 | CHANGED | rc=0 >>
+Nginx service: active
+Nginx enabled: enabled
+Nginx HTTP                 ALLOW       Anywhere                   # Allow Nginx HTTP traffic
+  <title>Linux Infrastructure Automation Lab</title>

@@ -1,0 +1,30 @@
+---
+- name: Apply Linux maintenance automation baseline
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: Refresh APT package cache safely
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 86400
+
+    - name: Clean obsolete downloaded package files
+      ansible.builtin.apt:
+        autoclean: true
+
+    - name: Ensure logrotate timer is enabled and started
+      ansible.builtin.systemd_service:
+        name: logrotate.timer
+        enabled: true
+        state: started
+
+    - name: Ensure systemd tmpfiles clean timer is enabled and started
+      ansible.builtin.systemd_service:
+        name: systemd-tmpfiles-clean.timer
+        enabled: true
+        state: started
+
+    - name: Write maintenance completion journal entry
+      ansible.builtin.command: logger -t lab-maintenance "Maintenance automation completed successfully"
+      changed_when: false

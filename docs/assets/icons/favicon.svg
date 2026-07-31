@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="title">
+  <title id="title">Infrastructure automation node topology</title>
+  <rect width="64" height="64" rx="12" fill="#161414"/>
+  <path d="M32 27v8M17 42v-7h30v7" fill="none" stroke="#e33b3b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="21" y="9" width="22" height="19" rx="5" fill="#2a2525" stroke="#ff5a52" stroke-width="3"/>
+  <rect x="7" y="40" width="20" height="16" rx="5" fill="#2a2525" stroke="#e33b3b" stroke-width="3"/>
+  <rect x="37" y="40" width="20" height="16" rx="5" fill="#2a2525" stroke="#e33b3b" stroke-width="3"/>
+  <circle cx="32" cy="18.5" r="3.25" fill="#f7f2f2"/>
+  <circle cx="17" cy="48" r="2.5" fill="#ff5a52"/>
+  <circle cx="47" cy="48" r="2.5" fill="#ff5a52"/>
+</svg>

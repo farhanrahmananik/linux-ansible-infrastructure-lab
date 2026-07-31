@@ -1,0 +1,6 @@
+linux-node-01 | CHANGED | rc=0 >>
+Filesystem                         Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv   11G  5.2G  5.1G  51% /
+linux-node-02 | CHANGED | rc=0 >>
+Filesystem                         Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv   11G  5.2G  5.1G  51% /

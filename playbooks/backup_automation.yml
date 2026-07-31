@@ -1,0 +1,64 @@
+---
+- name: Automate Linux configuration backups
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: Create infrastructure backup directory
+      ansible.builtin.file:
+        path: /var/backups/linux-infrastructure
+        state: directory
+        owner: root
+        group: root
+        mode: "0750"
+
+    - name: Deploy infrastructure configuration backup script
+      ansible.builtin.template:
+        src: lab-config-backup.sh.j2
+        dest: /usr/local/sbin/lab-config-backup
+        owner: root
+        group: root
+        mode: "0750"
+
+    - name: Run infrastructure configuration backup
+      ansible.builtin.command: /usr/local/sbin/lab-config-backup
+      register: backup_result
+      changed_when: "'BACKUP_UPDATED' in backup_result.stdout"
+      failed_when: >
+        backup_result.rc != 0 or
+        (
+          'BACKUP_UPDATED' not in backup_result.stdout and
+          'BACKUP_UNCHANGED' not in backup_result.stdout
+        )
+
+    - name: Deploy configuration backup service unit
+      ansible.builtin.template:
+        src: lab-config-backup.service.j2
+        dest: /etc/systemd/system/lab-config-backup.service
+        owner: root
+        group: root
+        mode: "0644"
+      notify: Reload systemd daemon
+
+    - name: Deploy configuration backup timer unit
+      ansible.builtin.template:
+        src: lab-config-backup.timer.j2
+        dest: /etc/systemd/system/lab-config-backup.timer
+        owner: root
+        group: root
+        mode: "0644"
+      notify: Reload systemd daemon
+
+    - name: Flush systemd daemon reload handler
+      ansible.builtin.meta: flush_handlers
+
+    - name: Ensure configuration backup timer is enabled and started
+      ansible.builtin.systemd_service:
+        name: lab-config-backup.timer
+        enabled: true
+        state: started
+
+  handlers:
+    - name: Reload systemd daemon
+      ansible.builtin.systemd_service:
+        daemon_reload: true

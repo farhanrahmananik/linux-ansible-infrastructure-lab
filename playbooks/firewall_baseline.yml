@@ -1,0 +1,40 @@
+---
+- name: Apply UFW firewall baseline
+  hosts: managed_nodes
+  become: true
+  gather_facts: false
+  serial: 1
+
+  tasks:
+    - name: Set default incoming policy to deny
+      community.general.ufw:
+        direction: incoming
+        policy: deny
+
+    - name: Set default outgoing policy to allow
+      community.general.ufw:
+        direction: outgoing
+        policy: allow
+
+    - name: Set default routed policy to deny
+      community.general.ufw:
+        direction: routed
+        policy: deny
+
+    - name: Allow OpenSSH application profile
+      community.general.ufw:
+        rule: allow
+        name: OpenSSH
+        comment: Allow SSH administration
+
+    - name: Enable UFW
+      community.general.ufw:
+        state: enabled
+
+    - name: Set UFW logging level to low
+      community.general.ufw:
+        logging: low
+
+    - name: Verify Ansible can reconnect
+      ansible.builtin.wait_for_connection:
+        timeout: 30

@@ -1,0 +1,12 @@
+linux-node-01 | CHANGED | rc=0 >>
+=== GROUP ===
+linux_admins:x:1001:
+
+=== USER ===
+uid=1001(opsadmin) gid=1002(opsadmin) groups=1002(opsadmin),27(sudo)
+linux-node-02 | CHANGED | rc=0 >>
+=== GROUP ===
+linux_admins:x:1001:
+
+=== USER ===
+uid=1001(opsadmin) gid=1002(opsadmin) groups=1002(opsadmin),27(sudo)

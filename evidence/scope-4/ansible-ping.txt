@@ -1,0 +1,8 @@
+linux-node-01 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+linux-node-02 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}

@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A recruiter-facing overview of a three-node Ubuntu infrastructure automation lab managed with Ansible.">
+  <meta name="theme-color" content="#161414">
+  <title>Linux Infrastructure Automation Lab</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="brand" aria-label="Linux Infrastructure Automation Lab">
+        <span class="automation-mark" aria-hidden="true"><span>A</span></span>
+        <span class="brand__name">Linux Infrastructure Automation Lab</span>
+      </div>
+      <p class="status"><span class="status__dot" aria-hidden="true"></span>SCOPE 9 // PASS</p>
+    </div>
+  </header>
+
+  <nav class="mobile-section-nav" aria-label="Mobile case study sections">
+    <details class="mobile-section-nav__disclosure">
+      <summary>Explore sections</summary>
+      <ul class="mobile-section-nav__list">
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#automation">Automation</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#web-deployment">Web</a></li>
+        <li><a href="#operations">Operations</a></li>
+        <li><a href="#validation">Validation</a></li>
+        <li><a href="#evidence">Evidence</a></li>
+        <li><a href="#lessons">Lessons</a></li>
+      </ul>
+    </details>
+  </nav>
+
+  <nav class="section-nav section-nav--desktop" aria-label="Case study sections">
+    <ul class="section-nav__list">
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="#automation">Automation</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#web-deployment">Web</a></li>
+      <li><a href="#operations">Operations</a></li>
+      <li><a href="#validation">Validation</a></li>
+      <li><a href="#evidence">Evidence</a></li>
+      <li><a href="#lessons">Lessons</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__inner">
+        <p class="hero__eyebrow">ANSIBLE <span aria-hidden="true">·</span> HYPER-V <span aria-hidden="true">·</span> UBUNTU</p>
+        <h1 id="hero-title">Linux Infrastructure Automation Lab</h1>
+        <p class="hero__summary">A three-node Ubuntu lab where Ansible automates security, web deployment, backups, and maintenance across two managed nodes.</p>
+
+        <dl class="metrics" aria-label="Validated project metrics">
+          <div class="metric-card">
+            <dt>Ubuntu Nodes</dt>
+            <dd>3</dd>
+          </div>
+          <div class="metric-card">
+            <dt>Managed Nodes</dt>
+            <dd>2</dd>
+          </div>
+          <div class="metric-card">
+            <dt>Validated Playbooks</dt>
+            <dd>8</dd>
+          </div>
+          <div class="metric-card">
+            <dt>Evidence Screenshots</dt>
+            <dd>14</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="content-section architecture" id="architecture" aria-labelledby="architecture-title">
+      <div class="section__inner">
+        <p class="section__eyebrow">LAB ARCHITECTURE</p>
+        <h2 id="architecture-title">One controller. Two managed nodes.</h2>
+        <p class="section__lead">The Hyper-V lab contains one Ansible control node managing two Ubuntu Server nodes.</p>
+
+        <figure class="topology" aria-labelledby="topology-caption">
+          <figcaption id="topology-caption">Hyper-V host topology showing the Ansible controller and its two managed nodes.</figcaption>
+          <div class="hyperv-boundary">
+            <p class="hyperv-boundary__label">Hyper-V host <span aria-hidden="true">//</span> Windows 11</p>
+
+            <article class="node-card node-card--controller">
+              <p class="node-card__role">Control node</p>
+              <h3>ansible-control</h3>
+              <dl class="node-card__specs">
+                <div>
+                  <dt>Platform</dt>
+                  <dd>Ubuntu Server 26.04 LTS</dd>
+                </div>
+                <div>
+                  <dt>Automation</dt>
+                  <dd>Ansible 13.1.0</dd>
+                </div>
+                <div>
+                  <dt>Engine</dt>
+                  <dd>ansible-core 2.20.1</dd>
+                </div>
+              </dl>
+            </article>
+
+            <div class="topology__relationship">
+              <p><strong>ansible-control</strong> manages both nodes</p>
+              <ul class="topology__managed">
+                <li>
+                  <article class="node-card node-card--managed">
+                    <p class="node-card__role">Managed node</p>
+                    <h3>linux-node-01</h3>
+                    <p class="node-card__platform">Ubuntu Server 26.04 LTS</p>
+                  </article>
+                </li>
+                <li>
+                  <article class="node-card node-card--managed">
+                    <p class="node-card__role">Managed node</p>
+                    <h3>linux-node-02</h3>
+                    <p class="node-card__platform">Ubuntu Server 26.04 LTS</p>
+                  </article>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="content-section stack" id="stack" aria-labelledby="stack-title">
+      <div class="section__inner">
+        <p class="section__eyebrow">TECHNOLOGY STACK</p>
+        <h2 id="stack-title">Verified tools and platforms</h2>
+        <dl class="stack-grid">
+          <div class="stack-card">
+            <dt>Host platform</dt>
+            <dd>Windows 11 and Hyper-V</dd>
+          </div>
+          <div class="stack-card">
+            <dt>Server operating system</dt>
+            <dd>Ubuntu Server 26.04 LTS</dd>
+          </div>
+          <div class="stack-card">
+            <dt>Automation</dt>
+            <dd>Ansible 13.1.0</dd>
+          </div>
+          <div class="stack-card">
+            <dt>Automation engine</dt>
+            <dd>ansible-core 2.20.1</dd>
+          </div>
+          <div class="stack-card">
+            <dt>Remote access</dt>
+            <dd>OpenSSH</dd>
+          </div>
+          <div class="stack-card">
+            <dt>Firewall</dt>
+            <dd>UFW</dd>
+          </div>
+          <div class="stack-card">
+            <dt>Web server</dt>
+            <dd>Nginx</dd>
+          </div>
+          <div class="stack-card">
+            <dt>Scheduling</dt>
+            <dd>systemd timers</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="content-section automation" id="automation" aria-labelledby="automation-title">
+      <div class="section__inner">
+        <p class="section__eyebrow">AUTOMATION COVERAGE</p>
+        <h2 id="automation-title">Eight playbooks. Repeatable operations.</h2>
+        <p class="section__lead">The lab covers provisioning, security, service deployment, backup, maintenance, and evidence collection across its managed nodes.</p>
+
+        <p class="validation-summary"><strong>8 of 8 playbooks passed syntax validation.</strong> Repeat runs confirmed idempotency for user and group, package, firewall, SSH, Nginx, backup, and maintenance configuration automation. Log collection completed successfully.</p>
+
+        <ol class="automation-grid" aria-label="Validated automation playbooks">
+          <li>
+            <article class="automation-card">
+              <p class="automation-card__index" aria-hidden="true">01</p>
+              <h3>User &amp; Group Management</h3>
+              <p>Ensures configured administrative groups and managed user accounts are present.</p>
+            </article>
+          </li>
+          <li>
+            <article class="automation-card">
+              <p class="automation-card__index" aria-hidden="true">02</p>
+              <h3>Package Management</h3>
+              <p>Refreshes package metadata safely and keeps the required managed packages installed.</p>
+            </article>
+          </li>
+          <li>
+            <article class="automation-card">
+              <p class="automation-card__index" aria-hidden="true">03</p>
+              <h3>Firewall Baseline</h3>
+              <p>Applies restrictive UFW defaults while preserving approved OpenSSH administration.</p>
+            </article>
+          </li>
+          <li>
+            <article class="automation-card">
+              <p class="automation-card__index" aria-hidden="true">04</p>
+              <h3>SSH Hardening</h3>
+              <p>Deploys a validated SSH baseline that disables root and password-based access.</p>
+            </article>
+          </li>
+          <li>
+            <article class="automation-card">
+              <p class="automation-card__index" aria-hidden="true">05</p>
+              <h3>Nginx Deployment</h3>
+              <p>Installs Nginx, deploys the lab landing page, and keeps the service enabled and running.</p>
+            </article>
+          </li>
+          <li>
+            <article class="automation-card">
+              <p class="automation-card__index" aria-hidden="true">06</p>
+              <h3>Backup Automation</h3>
+              <p>Creates protected configuration backups and schedules recurring runs with a systemd timer.</p>
+            </article>
+          </li>
+          <li>
+            <article class="automation-card">
+              <p class="automation-card__index" aria-hidden="true">07</p>
+              <h3>Maintenance Automation</h3>
+              <p>Cleans obsolete package data and keeps log rotation and temporary-file cleanup scheduled.</p>
+            </article>
+          </li>
+          <li>
+            <article class="automation-card">
+              <p class="automation-card__index" aria-hidden="true">08</p>
+              <h3>Log Collection</h3>
+              <p>Collects public-safe service, timer, backup, maintenance, and disk-status evidence.</p>
+            </article>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="content-section security" id="security" aria-labelledby="security-title">
+      <div class="section__inner">
+        <p class="section__eyebrow">SECURITY BASELINE</p>
+        <h2 id="security-title">Hardened access. Controlled exposure.</h2>
+        <p class="section__lead">Effective SSH settings and the UFW baseline were validated on the managed nodes.</p>
+
+        <div class="security-grid">
+          <article class="security-panel">
+            <header class="security-panel__header">
+              <p class="security-panel__mark" aria-hidden="true">SSH</p>
+              <div>
+                <p class="security-panel__label">Access control</p>
+                <h3>Effective SSH settings</h3>
+              </div>
+            </header>
+            <dl class="status-list">
+              <div class="status-row">
+                <dt><code>PermitRootLogin:</code></dt>
+                <dd><code>no</code><span class="status-text">Validated</span></dd>
+              </div>
+              <div class="status-row">
+                <dt><code>PasswordAuthentication:</code></dt>
+                <dd><code>no</code><span class="status-text">Validated</span></dd>
+              </div>
+              <div class="status-row">
+                <dt><code>PubkeyAuthentication:</code></dt>
+                <dd><code>yes</code><span class="status-text">Validated</span></dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="security-panel">
+            <header class="security-panel__header">
+              <p class="security-panel__mark" aria-hidden="true">UFW</p>
+              <div>
+                <p class="security-panel__label">Firewall control</p>
+                <h3>Validated UFW baseline</h3>
+              </div>
+            </header>
+            <dl class="status-list">
+              <div class="status-row">
+                <dt><code>UFW:</code></dt>
+                <dd><code>active</code><span class="status-text">Validated</span></dd>
+              </div>
+              <div class="status-row">
+                <dt><code>OpenSSH:</code></dt>
+                <dd><code>allowed</code><span class="status-text">Validated</span></dd>
+              </div>
+              <div class="status-row">
+                <dt><code>Nginx HTTP:</code></dt>
+                <dd><code>allowed</code><span class="status-text">Validated</span></dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section web-deployment" id="web-deployment" aria-labelledby="web-deployment-title">
+      <div class="section__inner">
+        <p class="section__eyebrow">WEB DEPLOYMENT</p>
+        <h2 id="web-deployment-title">Automated delivery. Visible outcome.</h2>
+        <p class="section__lead">Ansible deploys and maintains Nginx across both managed nodes.</p>
+
+        <div class="web-status-grid">
+          <article class="security-panel">
+            <header class="security-panel__header">
+              <p class="security-panel__mark" aria-hidden="true">NGX</p>
+              <div>
+                <p class="security-panel__label">Service status</p>
+                <h3>Nginx on managed nodes</h3>
+              </div>
+            </header>
+            <ul class="outcome-list">
+              <li>
+                <span class="status-text">Active</span>
+                <p>Nginx is active on both managed nodes.</p>
+              </li>
+              <li>
+                <span class="status-text">Enabled</span>
+                <p>Nginx is enabled on both managed nodes.</p>
+              </li>
+            </ul>
+          </article>
+
+          <article class="security-panel">
+            <header class="security-panel__header">
+              <p class="security-panel__mark" aria-hidden="true">VAL</p>
+              <div>
+                <p class="security-panel__label">Deployment checks</p>
+                <h3>Validated outcome</h3>
+              </div>
+            </header>
+            <ul class="outcome-list">
+              <li>
+                <span class="status-text">Passed</span>
+                <p>Nginx deployment passed idempotency validation.</p>
+              </li>
+              <li>
+                <span class="status-text">Passed</span>
+                <p>Landing-page validation passed.</p>
+              </li>
+              <li>
+                <span class="status-text">Validated</span>
+                <p>Validated page title: <cite>Linux Infrastructure Automation Lab</cite></p>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section operations" id="operations" aria-labelledby="operations-title">
+      <div class="section__inner">
+        <p class="section__eyebrow">OPERATIONS</p>
+        <h2 id="operations-title">Scheduled care. Verifiable backups.</h2>
+        <p class="section__lead">Automated backup, operational logging, and routine maintenance keep recurring lab tasks consistent and verifiable.</p>
+
+        <div class="operations-grid">
+          <article class="security-panel">
+            <header class="security-panel__header">
+              <p class="security-panel__mark" aria-hidden="true">BAK</p>
+              <div>
+                <p class="security-panel__label">Backup operations</p>
+                <h3>Scheduled and verified</h3>
+              </div>
+            </header>
+            <ul class="outcome-list">
+              <li>
+                <span class="status-text">Active + enabled</span>
+                <p>Backup timer is active and enabled.</p>
+              </li>
+              <li>
+                <span class="status-text">Present</span>
+                <p>Backup archive exists on both managed nodes.</p>
+              </li>
+              <li>
+                <span class="status-text">Passed</span>
+                <p>Backup archives passed gzip integrity and tar readability checks.</p>
+              </li>
+              <li>
+                <span class="status-text">Passed</span>
+                <p>Backup automation passed idempotency validation.</p>
+              </li>
+            </ul>
+          </article>
+
+          <article class="security-panel">
+            <header class="security-panel__header">
+              <p class="security-panel__mark" aria-hidden="true">MNT</p>
+              <div>
+                <p class="security-panel__label">Routine maintenance</p>
+                <h3>Timer state</h3>
+              </div>
+            </header>
+            <ul class="outcome-list">
+              <li>
+                <span class="status-text">Enabled + active</span>
+                <p><code>logrotate.timer</code> is enabled and active.</p>
+              </li>
+              <li>
+                <span class="status-text">Static + active</span>
+                <p><code>systemd-tmpfiles-clean.timer</code> is static and active.</p>
+              </li>
+              <li>
+                <span class="status-text">Passed</span>
+                <p>Maintenance automation passed idempotency validation.</p>
+              </li>
+            </ul>
+          </article>
+
+          <article class="security-panel operations-card--collection">
+            <header class="security-panel__header">
+              <p class="security-panel__mark" aria-hidden="true">LOG</p>
+              <div>
+                <p class="security-panel__label">Operational evidence</p>
+                <h3>Log collection</h3>
+              </div>
+            </header>
+            <ul class="outcome-list">
+              <li>
+                <span class="status-text">Complete</span>
+                <p>Log collection completed successfully.</p>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section validation" id="validation" aria-labelledby="validation-title">
+      <div class="section__inner">
+        <p class="section__eyebrow">VALIDATION</p>
+        <div class="validation__heading-row">
+          <h2 id="validation-title">Evidence before claims.</h2>
+          <p class="scope-status"><span aria-hidden="true">✓</span>SCOPE 9 // PASS</p>
+        </div>
+
+        <ul class="validation-board" aria-label="Scope 9 validation highlights">
+          <li class="validation-item">
+            <span class="status-text">PASS</span>
+            <p>8 of 8 Ansible playbooks passed syntax validation.</p>
+          </li>
+          <li class="validation-item">
+            <span class="status-text">PASS</span>
+            <p>Both managed nodes passed Ansible ping.</p>
+          </li>
+          <li class="validation-item">
+            <span class="status-text">PASS</span>
+            <p>Configuration automation areas passed idempotency validation.</p>
+          </li>
+          <li class="validation-item">
+            <span class="status-text">PASS</span>
+            <p>Validation snapshot: the control node and both managed nodes had zero failed systemd units.</p>
+          </li>
+          <li class="validation-item">
+            <span class="status-text">PASS</span>
+            <p>Backup archives passed integrity and readability checks on both managed nodes.</p>
+          </li>
+          <li class="validation-item">
+            <span class="status-text">PASS</span>
+            <p>14 evidence screenshots were captured and verified.</p>
+          </li>
+          <li class="validation-item">
+            <span class="status-text">PASS</span>
+            <p>Evidence, collected logs, and documentation passed the refined public-safety scan.</p>
+          </li>
+          <li class="validation-item">
+            <span class="status-text">PASS</span>
+            <p>Two IPv4-pattern matches were reviewed as harmless netmask false positives.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section evidence" id="evidence" aria-labelledby="evidence-title">
+      <div class="section__inner">
+        <p class="section__eyebrow">EVIDENCE GALLERY</p>
+        <h2 id="evidence-title">Fourteen checks. Visible proof.</h2>
+        <p class="section__lead">Screenshots document architecture, connectivity, automation, security, web deployment, operations, system health, and public-safety validation.</p>
+
+        <div class="evidence-grid">
+          <figure class="evidence-card">
+            <a class="evidence-link" href="assets/images/validation/01-hyper-v-architecture.png" aria-label="Open full-size Hyper-V architecture evidence">
+              <img src="assets/images/validation/01-hyper-v-architecture.png" width="746" height="135" loading="lazy" decoding="async" alt="Hyper-V Manager showing three running virtual machines: one Ansible controller and two Linux managed nodes.">
+            </a>
+            <figcaption><span>01</span>Hyper-V lab topology with one Ansible control node managing two Linux nodes.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <a class="evidence-link" href="assets/images/validation/02-ansible-inventory-graph.png" aria-label="Open full-size Ansible inventory evidence">
+              <img src="assets/images/validation/02-ansible-inventory-graph.png" width="196" height="100" loading="lazy" decoding="async" alt="Ansible inventory graph showing the managed nodes group with both Linux nodes listed.">
+            </a>
+            <figcaption><span>02</span>Ansible inventory structure for the managed Linux nodes.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <a class="evidence-link" href="assets/images/validation/03-ansible-ping-success.png" aria-label="Open full-size Ansible connectivity evidence">
+              <img src="assets/images/validation/03-ansible-ping-success.png" width="570" height="282" loading="lazy" decoding="async" alt="Terminal results showing successful Ansible ping responses from both managed Linux nodes.">
+            </a>
+            <figcaption><span>03</span>Connectivity validation confirms Ansible can reach both managed nodes.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <a class="evidence-link" href="assets/images/validation/04-playbook-syntax-validation.png" aria-label="Open full-size playbook syntax evidence">
+              <img src="assets/images/validation/04-playbook-syntax-validation.png" width="397" height="163" loading="lazy" decoding="async" alt="Terminal output showing all eight Ansible playbooks passing syntax validation.">
+            </a>
+            <figcaption><span>04</span>Playbook syntax validation completed successfully across the lab.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <a class="evidence-link" href="assets/images/validation/05-idempotency-recap.png" aria-label="Open full-size idempotency recap evidence">
+              <img src="assets/images/validation/05-idempotency-recap.png" width="1324" height="86" loading="lazy" decoding="async" alt="Ansible play recap showing zero changes and zero failures during a repeat automation run.">
+            </a>
+            <figcaption><span>05</span>Idempotency validation shows stable automation results on repeat runs.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <a class="evidence-link" href="assets/images/validation/06-ssh-effective-settings.png" aria-label="Open full-size SSH hardening evidence">
+              <img src="assets/images/validation/06-ssh-effective-settings.png" width="327" height="161" loading="lazy" decoding="async" alt="Effective SSH settings showing root login and password authentication disabled and public-key authentication enabled.">
+            </a>
+            <figcaption><span>06</span>SSH hardening baseline is active on the managed nodes.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <a class="evidence-link" href="assets/images/validation/07-ufw-baseline.png" aria-label="Open full-size firewall baseline evidence">
+              <img src="assets/images/validation/07-ufw-baseline.png" width="848" height="245" loading="lazy" decoding="async" alt="UFW status output showing the firewall active with OpenSSH and Nginx HTTP service rules allowed.">
+            </a>
+            <figcaption><span>07</span>Firewall baseline allows required administration and web traffic only.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <a class="evidence-link" href="assets/images/validation/08-nginx-service-status.png" aria-label="Open full-size Nginx service evidence">
+              <img src="assets/images/validation/08-nginx-service-status.png" width="307" height="125" loading="lazy" decoding="async" alt="Service status output validating that Nginx is active and enabled on the managed nodes.">
+            </a>
+            <figcaption><span>08</span>Nginx is installed, running, and enabled through Ansible automation.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <a class="evidence-link" href="assets/images/validation/09-nginx-landing-page.png" aria-label="Open full-size Nginx landing-page evidence">
+              <img src="assets/images/validation/09-nginx-landing-page.png" width="1157" height="786" loading="lazy" decoding="async" alt="Browser view displaying the Linux Infrastructure Automation Lab landing page served by Nginx.">
+            </a>
+            <figcaption><span>09</span>Portfolio landing page confirms the managed web service is live.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <a class="evidence-link" href="assets/images/validation/10-backup-timer-status.png" aria-label="Open full-size backup timer evidence">
+              <img src="assets/images/validation/10-backup-timer-status.png" width="309" height="126" loading="lazy" decoding="async" alt="Systemd timer status showing the automated configuration backup timer active and enabled.">
+            </a>
+            <figcaption><span>10</span>Automated configuration backups are scheduled with a systemd timer.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <a class="evidence-link" href="assets/images/validation/11-maintenance-timers.png" aria-label="Open full-size maintenance timer evidence">
+              <img src="assets/images/validation/11-maintenance-timers.png" width="308" height="125" loading="lazy" decoding="async" alt="Systemd status showing active log rotation and temporary-file cleanup timers.">
+            </a>
+            <figcaption><span>11</span>Standard maintenance timers are active for log rotation and temporary file cleanup.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <a class="evidence-link" href="assets/images/validation/12-backup-integrity.png" aria-label="Open full-size backup integrity evidence">
+              <img src="assets/images/validation/12-backup-integrity.png" width="319" height="204" loading="lazy" decoding="async" alt="Backup validation output showing archive integrity and readability checks passing.">
+            </a>
+            <figcaption><span>12</span>Backup archive integrity checks confirm the generated configuration backup is readable.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <a class="evidence-link" href="assets/images/validation/13-zero-failed-systemd-units.png" aria-label="Open full-size system health evidence">
+              <img src="assets/images/validation/13-zero-failed-systemd-units.png" width="309" height="144" loading="lazy" decoding="async" alt="Validation output showing zero failed systemd units on the controller and both managed nodes.">
+            </a>
+            <figcaption><span>13</span>System health validation shows no failed systemd units across the lab.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <a class="evidence-link" href="assets/images/validation/14-public-safety-scan.png" aria-label="Open full-size public-safety scan evidence">
+              <img src="assets/images/validation/14-public-safety-scan.png" width="538" height="46" loading="lazy" decoding="async" alt="Public-safety scan result showing evidence and collected logs passed the sensitive-value review.">
+            </a>
+            <figcaption><span>14</span>Evidence and collected logs were checked for sensitive values before portfolio use.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section lessons" id="lessons" aria-labelledby="lessons-title">
+      <div class="section__inner">
+        <p class="section__eyebrow">LESSONS LEARNED</p>
+        <h2 id="lessons-title">Validation exposed the edge cases.</h2>
+        <p class="section__lead">The lab was refined through real issues encountered during Scopes 1–9, turning troubleshooting into repeatable operating guidance.</p>
+
+        <div class="lessons-list">
+          <details class="lesson">
+            <summary>Verify repository state before running Git workflows</summary>
+            <p><strong>Issue:</strong> Git actions fail when a project directory is not initialized. <strong>Takeaway:</strong> Confirm repository state before starting any Git workflow.</p>
+          </details>
+
+          <details class="lesson">
+            <summary>Handle privilege escalation through secure prompting</summary>
+            <p><strong>Issue:</strong> Privileged validation requires authentication. <strong>Takeaway:</strong> Prompt securely at runtime; never store or expose credentials.</p>
+          </details>
+
+          <details class="lesson">
+            <summary>Remove deprecated Ansible output options</summary>
+            <p><strong>Issue:</strong> An obsolete output option produced a deprecation warning. <strong>Takeaway:</strong> Use standard Ansible output to keep validation readable and forward-compatible.</p>
+          </details>
+
+          <details class="lesson">
+            <summary>Account for APT cache timing during idempotency checks</summary>
+            <p><strong>Issue:</strong> An expired cache window can produce an expected package-cache change. <strong>Takeaway:</strong> Refresh the cache, then repeat the check promptly before judging idempotency.</p>
+          </details>
+
+          <details class="lesson">
+            <summary>Review public-safety scan matches in context</summary>
+            <p><strong>Issue:</strong> Netmask values triggered IPv4-pattern matches. <strong>Takeaway:</strong> Review matches in context and exclude only confirmed harmless false positives from the refined scan.</p>
+          </details>
+
+          <details class="lesson">
+            <summary>Distinguish expected check-mode skips from failures</summary>
+            <p><strong>Issue:</strong> Some operational tasks intentionally skip in check mode. <strong>Takeaway:</strong> Interpret skips alongside zero failures and unchanged configuration tasks.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <aside class="repository-callout" id="repository" aria-labelledby="repository-title">
+      <div class="section__inner">
+        <h2 id="repository-title">Built to be inspected.</h2>
+        <p class="section__lead">The public repository link will be added after final public-safety review and remote configuration.</p>
+        <p class="repository-placeholder"><span aria-hidden="true">Unavailable</span>GitHub repository — pending public URL</p>
+      </div>
+    </aside>
+  </main>
+
+  <dialog class="lightbox" id="evidence-lightbox" aria-labelledby="lightbox-title" aria-describedby="lightbox-caption">
+    <div class="lightbox__shell">
+      <header class="lightbox__header">
+        <div>
+          <p class="lightbox__eyebrow">Evidence preview</p>
+          <h2 id="lightbox-title">Validation screenshot</h2>
+        </div>
+        <button class="lightbox__button" type="button" data-lightbox-close aria-label="Close evidence preview">Close</button>
+      </header>
+
+      <div class="lightbox__media">
+        <img data-lightbox-image alt="">
+      </div>
+
+      <p class="lightbox__caption" id="lightbox-caption" data-lightbox-caption aria-live="polite"></p>
+
+      <div class="lightbox__controls">
+        <button class="lightbox__button" type="button" data-lightbox-previous aria-label="Show previous evidence screenshot">Previous</button>
+        <p class="lightbox__position" data-lightbox-position aria-live="polite"></p>
+        <button class="lightbox__button" type="button" data-lightbox-next aria-label="Show next evidence screenshot">Next</button>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__title">Linux Infrastructure Automation Lab</p>
+      <p>Scope 9 technical validation passed.</p>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+</body>
+</html>

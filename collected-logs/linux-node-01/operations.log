@@ -1,0 +1,30 @@
+Managed-node inventory hostname: linux-node-01
+Current UTC timestamp: 2026-07-31T08:37:54Z
+
+Latest 10 lab-config-backup journal entries:
+2026-07-31T07:05:24+00:00 linux-node-01 lab-config-backup[13450]: BACKUP_UPDATED
+2026-07-31T07:07:26+00:00 linux-node-01 lab-config-backup[13712]: BACKUP_UNCHANGED
+2026-07-31T07:21:39+00:00 linux-node-01 lab-config-backup[14328]: BACKUP_UNCHANGED
+2026-07-31T07:23:09+00:00 linux-node-01 lab-config-backup[14890]: BACKUP_UNCHANGED
+2026-07-31T07:23:09+00:00 linux-node-01 lab-config-backup[14883]: BACKUP_UNCHANGED
+2026-07-31T07:23:40+00:00 linux-node-01 lab-config-backup[15097]: BACKUP_UNCHANGED
+
+Latest 10 lab-maintenance journal entries:
+2026-07-31T07:10:28+00:00 linux-node-01 lab-maintenance[14019]: Maintenance automation completed successfully
+2026-07-31T07:41:50+00:00 linux-node-01 lab-maintenance[16126]: Maintenance automation completed successfully
+
+Nginx active status:
+active
+
+lab-config-backup.timer active status:
+active
+
+lab-config-backup.timer enabled status:
+enabled
+
+logrotate.timer active status:
+active
+
+Root filesystem disk usage:
+Filesystem                         Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv   11G  5.2G  5.1G  51% /

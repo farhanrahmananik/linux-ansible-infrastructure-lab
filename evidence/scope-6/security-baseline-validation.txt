@@ -1,0 +1,38 @@
+linux-node-02 | CHANGED | rc=0 >>
+=== SSH HARDENING ===
+maxauthtries 3
+permitrootlogin no
+pubkeyauthentication yes
+passwordauthentication no
+kbdinteractiveauthentication no
+x11forwarding no
+allowtcpforwarding no
+=== FIREWALL BASELINE ===
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+22/tcp (OpenSSH)           ALLOW IN    Anywhere                   # Allow SSH administration
+22/tcp (OpenSSH (v6))      ALLOW IN    Anywhere (v6)              # Allow SSH administration
+linux-node-01 | CHANGED | rc=0 >>
+=== SSH HARDENING ===
+maxauthtries 3
+permitrootlogin no
+pubkeyauthentication yes
+passwordauthentication no
+kbdinteractiveauthentication no
+x11forwarding no
+allowtcpforwarding no
+=== FIREWALL BASELINE ===
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+22/tcp (OpenSSH)           ALLOW IN    Anywhere                   # Allow SSH administration
+22/tcp (OpenSSH (v6))      ALLOW IN    Anywhere (v6)              # Allow SSH administration

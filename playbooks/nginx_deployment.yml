@@ -1,0 +1,32 @@
+---
+- name: Deploy Nginx web server
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: Install nginx package
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Deploy nginx landing page
+      ansible.builtin.template:
+        src: nginx_index.html.j2
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Allow Nginx HTTP traffic through UFW
+      community.general.ufw:
+        rule: allow
+        name: Nginx HTTP
+        comment: Allow Nginx HTTP traffic
+
+    - name: Ensure nginx service is enabled and started
+      ansible.builtin.service:
+        name: nginx
+        enabled: true
+        state: started

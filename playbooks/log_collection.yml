@@ -1,0 +1,59 @@
+---
+- name: Collect public-safe operational logs
+  hosts: managed_nodes
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Generate public-safe operations report
+      ansible.builtin.shell: |
+        set -euo pipefail
+
+        report_path="/tmp/linux-infrastructure-operations.log"
+
+        {
+          printf 'Managed-node inventory hostname: %s\n' {{ inventory_hostname | quote }}
+          printf 'Current UTC timestamp: '
+          date -u '+%Y-%m-%dT%H:%M:%SZ'
+
+          printf '\nLatest 10 lab-config-backup journal entries:\n'
+          journalctl -t lab-config-backup -n 10 --no-pager --output=short-iso || true
+
+          printf '\nLatest 10 lab-maintenance journal entries:\n'
+          journalctl -t lab-maintenance -n 10 --no-pager --output=short-iso || true
+
+          printf '\nNginx active status:\n'
+          systemctl is-active nginx || true
+
+          printf '\nlab-config-backup.timer active status:\n'
+          systemctl is-active lab-config-backup.timer || true
+
+          printf '\nlab-config-backup.timer enabled status:\n'
+          systemctl is-enabled lab-config-backup.timer || true
+
+          printf '\nlogrotate.timer active status:\n'
+          systemctl is-active logrotate.timer || true
+
+          printf '\nRoot filesystem disk usage:\n'
+          df -hP /
+        } > "${report_path}"
+      args:
+        executable: /bin/bash
+
+    - name: Set operations report permissions
+      ansible.builtin.file:
+        path: /tmp/linux-infrastructure-operations.log
+        owner: root
+        group: root
+        mode: "0640"
+
+    - name: Fetch operations report to control node
+      ansible.builtin.fetch:
+        src: /tmp/linux-infrastructure-operations.log
+        dest: "{{ playbook_dir }}/../collected-logs/{{ inventory_hostname }}/operations.log"
+        flat: true
+
+    - name: Remove temporary operations report
+      ansible.builtin.file:
+        path: /tmp/linux-infrastructure-operations.log
+        state: absent

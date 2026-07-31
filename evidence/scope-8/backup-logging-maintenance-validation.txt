@@ -1,0 +1,80 @@
+Scope 8 Backup, Logging, and Maintenance Validation
+Validation date: 2026-07-31
+
+Public-safety note: This evidence contains only approved inventory hostnames and concise operational validation. It excludes IP addresses, MAC addresses, UUIDs, secrets, passwords, keys, environment variables, authentication logs, and full journals.
+
+linux-node-01
+
+Backup archive:
+- archive exists: yes
+- owner: root
+- group: root
+- numeric mode: 640
+- gzip integrity: PASS
+- tar integrity: PASS
+
+Backup scheduling:
+- lab-config-backup.timer enabled status: enabled
+- lab-config-backup.timer active status: active
+- next scheduled run: Sat 2026-08-01 00:05:19 UTC
+- service Type: oneshot
+- service User: root
+- service ExecStart: /usr/local/sbin/lab-config-backup
+- service ReadWritePaths: /var/backups/linux-infrastructure
+
+Backup execution:
+- lab-config-backup.service Result: success
+- ExecMainStatus: 0
+- latest lab-config-backup journal result: BACKUP_UNCHANGED
+
+Maintenance:
+- logrotate.timer active status: active
+- systemd-tmpfiles-clean.timer active status: active
+- latest lab-maintenance journal message: Maintenance automation completed successfully
+
+Log collection:
+- repository-root operations.log exists: yes
+- operations.log Current UTC timestamp: 2026-07-31T07:39:29Z
+- managed-node temporary report exists: no
+
+Idempotency summary:
+- backup_automation.yml: ok=7 changed=0 failed=0
+- maintenance_automation.yml: ok=6 changed=0 failed=0
+
+linux-node-02
+
+Backup archive:
+- archive exists: yes
+- owner: root
+- group: root
+- numeric mode: 640
+- gzip integrity: PASS
+- tar integrity: PASS
+
+Backup scheduling:
+- lab-config-backup.timer enabled status: enabled
+- lab-config-backup.timer active status: active
+- next scheduled run: Sat 2026-08-01 00:12:05 UTC
+- service Type: oneshot
+- service User: root
+- service ExecStart: /usr/local/sbin/lab-config-backup
+- service ReadWritePaths: /var/backups/linux-infrastructure
+
+Backup execution:
+- lab-config-backup.service Result: success
+- ExecMainStatus: 0
+- latest lab-config-backup journal result: BACKUP_UNCHANGED
+
+Maintenance:
+- logrotate.timer active status: active
+- systemd-tmpfiles-clean.timer active status: active
+- latest lab-maintenance journal message: Maintenance automation completed successfully
+
+Log collection:
+- repository-root operations.log exists: yes
+- operations.log Current UTC timestamp: 2026-07-31T07:39:29Z
+- managed-node temporary report exists: no
+
+Idempotency summary:
+- backup_automation.yml: ok=7 changed=0 failed=0
+- maintenance_automation.yml: ok=6 changed=0 failed=0

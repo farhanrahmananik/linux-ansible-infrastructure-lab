@@ -1,0 +1,19 @@
+---
+- name: Manage users and groups on managed nodes
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: Ensure admin groups exist
+      ansible.builtin.group:
+        name: "{{ item.name }}"
+        state: present
+      loop: "{{ managed_groups }}"
+
+    - name: Ensure managed users exist
+      ansible.builtin.user:
+        name: "{{ item.username }}"
+        groups: "{{ item.groups | join(',') }}"
+        append: true
+        state: present
+      loop: "{{ managed_users }}"

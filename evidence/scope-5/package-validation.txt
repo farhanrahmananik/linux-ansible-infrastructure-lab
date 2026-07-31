@@ -1,0 +1,6 @@
+linux-node-01 | CHANGED | rc=0 >>
+ii  curl           8.18.0-1ubuntu2.3     amd64        command line tool for transferring data with URL syntax
+ii  vim            2:9.1.2141-1ubuntu4.7 amd64        Vi IMproved - enhanced vi editor
+linux-node-02 | CHANGED | rc=0 >>
+ii  curl           8.18.0-1ubuntu2.3     amd64        command line tool for transferring data with URL syntax
+ii  vim            2:9.1.2141-1ubuntu4.7 amd64        Vi IMproved - enhanced vi editor

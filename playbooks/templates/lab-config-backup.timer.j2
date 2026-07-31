@@ -1,0 +1,13 @@
+[Unit]
+Description=Daily Linux Infrastructure Automation Lab configuration backup
+Documentation=urn:linux-infrastructure-automation-lab:configuration-backup
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=15m
+AccuracySec=1m
+Unit=lab-config-backup.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,38 @@
+---
+- name: Apply SSH hardening baseline
+  hosts: managed_nodes
+  become: true
+  gather_facts: false
+  serial: 1
+
+  tasks:
+    - name: Install SSH hardening configuration
+      ansible.builtin.copy:
+        dest: /etc/ssh/sshd_config.d/00-ansible-hardening.conf
+        owner: root
+        group: root
+        mode: "0644"
+        validate: /usr/sbin/sshd -t -f %s
+        content: |
+          # Managed by Ansible
+          PermitRootLogin no
+          PasswordAuthentication no
+          KbdInteractiveAuthentication no
+          PubkeyAuthentication yes
+          MaxAuthTries 3
+          X11Forwarding no
+          AllowTcpForwarding no
+      notify: Reload SSH
+
+    - name: Flush SSH reload handler
+      ansible.builtin.meta: flush_handlers
+
+    - name: Verify SSH reconnection
+      ansible.builtin.wait_for_connection:
+        timeout: 30
+
+  handlers:
+    - name: Reload SSH
+      ansible.builtin.service:
+        name: ssh
+        state: reloaded

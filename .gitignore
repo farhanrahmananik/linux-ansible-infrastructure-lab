@@ -1,0 +1,25 @@
+# Private inventory values
+/inventory/hosts.ini
+!/inventory/hosts.example.ini
+
+# Ansible retry files
+*.retry
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Ansible Vault password files
+.vault_pass
+.vault_pass.*
+vault_pass*
+vault-password*
+*.vault-pass
+*.vault-password
+
+# Private keys
+*.pem
+*.key
+id_rsa*
+id_ed25519*
