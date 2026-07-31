@@ -1,6 +1,29 @@
 (() => {
   "use strict";
 
+  const backToTopLink = document.querySelector("[data-back-to-top]");
+
+  backToTopLink?.addEventListener("click", (event) => {
+    const modifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+
+    if (event.defaultPrevented || event.button !== 0 || modifiedClick) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: reducedMotion ? "auto" : "smooth"
+    });
+
+    const fragmentFreeUrl = `${window.location.pathname}${window.location.search}`;
+    window.history.replaceState(window.history.state, "", fragmentFreeUrl);
+  });
+
   const dialog = document.querySelector("#evidence-lightbox");
   const galleryLinks = Array.from(document.querySelectorAll("#evidence .evidence-link"));
 
