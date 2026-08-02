@@ -69,19 +69,31 @@
 
   <main id="main-content">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-motif" aria-hidden="true">
-        <span class="hero-motif__orbit hero-motif__orbit--outer"></span>
-        <span class="hero-motif__orbit hero-motif__orbit--inner"></span>
-        <span class="hero-motif__link hero-motif__link--one"></span>
-        <span class="hero-motif__link hero-motif__link--two"></span>
-        <span class="hero-motif__node hero-motif__node--control"></span>
-        <span class="hero-motif__node hero-motif__node--managed-one"></span>
-        <span class="hero-motif__node hero-motif__node--managed-two"></span>
-      </div>
       <div class="hero__inner">
-        <p class="hero__eyebrow">ANSIBLE <span aria-hidden="true">·</span> HYPER-V <span aria-hidden="true">·</span> UBUNTU</p>
-        <h1 id="hero-title">Linux Infrastructure Automation Lab</h1>
-        <p class="hero__summary">A three-node Ubuntu lab where Ansible automates security, web deployment, backups, and maintenance across two managed nodes.</p>
+        <div class="hero__copy">
+          <p class="hero__eyebrow">ANSIBLE <span aria-hidden="true">·</span> HYPER-V <span aria-hidden="true">·</span> UBUNTU</p>
+          <h1 id="hero-title">Linux Infrastructure Automation Lab</h1>
+          <p class="hero__summary">A three-node Ubuntu lab where Ansible automates security, web deployment, backups, and maintenance across two managed nodes.</p>
+        </div>
+
+        <div class="hero-flow" aria-hidden="true">
+          <span class="hero-flow__ground"></span>
+          <span class="hero-flow__route hero-flow__route--left"></span>
+          <span class="hero-flow__route hero-flow__route--right"></span>
+          <span class="hero-flow__route-label">SSH / ANSIBLE</span>
+          <span class="hero-flow__machine hero-flow__machine--control">
+            <span class="hero-flow__cube"></span>
+            <span class="hero-flow__label">CONTROL</span>
+          </span>
+          <span class="hero-flow__machine hero-flow__machine--node-one">
+            <span class="hero-flow__cube"></span>
+            <span class="hero-flow__label">NODE 01</span>
+          </span>
+          <span class="hero-flow__machine hero-flow__machine--node-two">
+            <span class="hero-flow__cube"></span>
+            <span class="hero-flow__label">NODE 02</span>
+          </span>
+        </div>
 
         <dl class="metrics" aria-label="Validated project metrics">
           <div class="metric-card">
@@ -106,9 +118,13 @@
 
     <section class="content-section architecture" id="architecture" aria-labelledby="architecture-title">
       <div class="section__inner">
-        <p class="section__eyebrow">LAB ARCHITECTURE</p>
-        <h2 id="architecture-title">One controller. Two managed nodes.</h2>
-        <p class="section__lead">The Hyper-V lab contains one Ansible control node managing two Ubuntu Server nodes.</p>
+        <div class="architecture__intro">
+          <div>
+            <p class="section__eyebrow">LAB ARCHITECTURE</p>
+            <h2 id="architecture-title">One controller. Two managed nodes.</h2>
+          </div>
+          <p class="section__lead">The Hyper-V lab contains one Ansible control node managing two Ubuntu Server nodes.</p>
+        </div>
 
         <figure class="topology" aria-labelledby="topology-caption">
           <figcaption id="topology-caption">Hyper-V host topology showing the Ansible controller and its two managed nodes.</figcaption>
@@ -116,6 +132,7 @@
             <p class="hyperv-boundary__label">Hyper-V host <span aria-hidden="true">//</span> Windows 11</p>
 
             <article class="node-card node-card--controller">
+              <span class="node-card__glyph" aria-hidden="true"></span>
               <p class="node-card__role">Control node</p>
               <h3>ansible-control</h3>
               <dl class="node-card__specs">
@@ -139,6 +156,7 @@
               <ul class="topology__managed">
                 <li>
                   <article class="node-card node-card--managed">
+                    <span class="node-card__glyph" aria-hidden="true"></span>
                     <p class="node-card__role">Managed node</p>
                     <h3>linux-node-01</h3>
                     <p class="node-card__platform">Ubuntu Server 26.04 LTS</p>
@@ -146,6 +164,7 @@
                 </li>
                 <li>
                   <article class="node-card node-card--managed">
+                    <span class="node-card__glyph" aria-hidden="true"></span>
                     <p class="node-card__role">Managed node</p>
                     <h3>linux-node-02</h3>
                     <p class="node-card__platform">Ubuntu Server 26.04 LTS</p>
