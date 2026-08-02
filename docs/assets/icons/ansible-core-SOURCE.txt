@@ -1,0 +1,6 @@
+Ansible Core logo source
+
+Original asset:
+https://docs.ansible.com/images/project-logos/ansible-core.svg
+
+The SVG is stored unmodified. Ansible and its marks are trademarks of Red Hat, Inc.
